@@ -24,7 +24,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ReceiptOrderDetail extends CommonEntity {
+public class ReceiptOrderDetailEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 

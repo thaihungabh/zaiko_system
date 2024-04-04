@@ -25,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class StocktakingDetail extends CommonEntity {
+public class StocktakingDetailEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
