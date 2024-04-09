@@ -81,9 +81,9 @@ public class ExpenseEntity extends CommonEntity {
     @Column(name = "destination_code", length = 6)
     private String destinationCode;
 
-    @JsonProperty("deliverDestinationName")
-    @Column(name = "deliver_destination_name", length = 100)
-    private String deliverDestinationName;
+    @JsonProperty("departmentName")
+    @Column(name = "department_name", length = 100)
+    private String departmentName;
 
     @JsonProperty("postCode")
     @Column(name = "post_code", length = 8)
@@ -122,7 +122,7 @@ public class ExpenseEntity extends CommonEntity {
     private String courseCode;
 
     @JsonProperty("saleCategory")
-    @Column(name = "sale_category", length = 1, nullable = false)
+    @Column(name = "sale_category")
     private String saleCategory;
 
     @JsonProperty("freeItem1")
@@ -136,5 +136,9 @@ public class ExpenseEntity extends CommonEntity {
     @JsonProperty("freeItem3")
     @Column(name = "free_item3", length = 100)
     private String freeItem3;
+
+    @JsonProperty("deliverySlip_id")
+    @Column(name = "delivery_slip_id")
+    private Integer deliverySlip_id;
 
 }

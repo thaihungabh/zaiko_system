@@ -20,9 +20,9 @@ public class InventoryInputBkEntity extends CommonEntity {
     // InventoryInputBk ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "inventory_input_bk_id")
+    @JsonProperty("inventoryInput_bk_id")
+    private Integer inventoryInput_bk_id;
 
     // InventoryInputId
     @Column(name = "inventory_input_id", nullable = false)

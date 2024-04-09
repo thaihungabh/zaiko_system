@@ -1,22 +1,9 @@
 package org.api.bean.jpa;
 
-import java.math.BigDecimal;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.*;
 
 
 @Entity
@@ -33,89 +20,34 @@ public class InventorySetProductDetailEntity extends CommonEntity {
     // InventorySetProductDetail ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "inventory_set_product_detail_id")
+    @JsonProperty("inventorySetProductDetail_id")
+    private Integer inventorySetProductDetail_id;
 
-    // InventorySetProductId
-    @Column(name = "inventory_set_product_id")
-    @JsonProperty("inventorySetProductId")
-    private Integer inventorySetProductId;
+    // ProductID
+    @Column(name = "company_id")
+    @JsonProperty("companyId")
+    private Integer companyId;
 
     // InventoryId
     @Column(name = "inventory_id")
     @JsonProperty("inventoryId")
     private Integer inventoryId;
 
-    // ProductID
-    @Column(name = "product_id")
-    @JsonProperty("productId")
-    private Integer productId;
-
-    // DatetimeMng
-    @Column(name = "datetime_mng")
-    @JsonProperty("datetimeMng")
-    private String datetimeMng;
-
-    // NumberMng
-    @Column(name = "number_mng")
-    @JsonProperty("numberMng")
-    private String numberMng;
-
-    // ProductOwnerID
-    @Column(name = "product_owner_id")
-    @JsonProperty("productOwnerID")
-    private Integer productOwnerID;
-
-    // RepositoryId
-    @Column(name = "repository_id")
-    @JsonProperty("repositoryId")
-    private Integer repositoryId;
-
-    // LocationId
-    @Column(name = "location_id")
-    @JsonProperty("locationId")
-    private Integer locationId;
-
-    // InventoryProductType
-    @Column(name = "inventory_product_type")
-    @JsonProperty("inventoryProductType")
-    private Integer inventoryProductType;
-
-    // SupplierId
-    @Column(name = "supplier_id")
-    @JsonProperty("supplierId")
-    private Integer supplierId;
+    // InventorySetProductId
+    @Column(name = "inventory_set_product_id")
+    @JsonProperty("inventorySetProductId")
+    private Integer inventorySetProductId;
 
     // SubQuantity
-    @Column(name = "sub_quantity", precision = 7, scale = 2)
-    @JsonProperty("subQuantity")
-    private BigDecimal subQuantity;
+    @Column(name = "quantity")
+    @JsonProperty("quantity")
+    private Integer quantity;
 
     // ConstituentQuantity
-    @Column(name = "constituent_quantity", precision = 7, scale = 2)
+    @Column(name = "constituent_quantity")
     @JsonProperty("constituentQuantity")
-    private BigDecimal constituentQuantity;
-
-    // InventoryChildSetProductId
-    @Column(name = "inventory_child_set_product_id")
-    @JsonProperty("inventoryChildSetProductId")
-    private Integer inventoryChildSetProductId;
-
-    // FreeItem1
-    @Column(name = "free_item1")
-    @JsonProperty("freeItem1")
-    private String freeItem1;
-
-    // FreeItem2
-    @Column(name = "free_item2")
-    @JsonProperty("freeItem2")
-    private String freeItem2;
-
-    // FreeItem3
-    @Column(name = "free_item3")
-    @JsonProperty("freeItem3")
-    private String freeItem3;
+    private Integer constituentQuantity;
 
 
 }
