@@ -105,6 +105,11 @@ public class BatchAllocatedEntity extends CommonEntity implements Serializable {
     @JsonProperty("freeItem3")
     private String freeItem3;
 
+    // billing_pack_type
+    @Column(name = "billing_pack_type")
+    @JsonProperty("billingPackType")
+    private String billing_pack_type;
+
 
 
 }

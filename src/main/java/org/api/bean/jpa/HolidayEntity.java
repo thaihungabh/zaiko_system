@@ -21,9 +21,9 @@ public class HolidayEntity extends CommonEntity {
     // Holiday ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "holiday_id")
+    @JsonProperty("holidayId")
+    private Integer holidayId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
