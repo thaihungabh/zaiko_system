@@ -164,4 +164,19 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String free_item3;
+
+    //deliverySlip_id
+    @Column(name = "delivery_slip_id")
+    @JsonProperty("deliverySlip_id")
+    private Integer deliverySlip_id;
+
+    //is_batch
+    @Column(name = "is_batch")
+    @JsonProperty("is_batch")
+    private String is_batch;
+
+    //batch_no
+    @Column(name = "batch_no")
+    @JsonProperty("batch_no")
+    private String batch_no;
 }
