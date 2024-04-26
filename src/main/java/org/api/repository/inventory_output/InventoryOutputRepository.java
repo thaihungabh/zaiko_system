@@ -176,7 +176,7 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
             "AND ((:deliveryStatus = '2' AND a.sum_actual_quantity = 0) " +
                                                 "OR (:deliveryStatus = '3' AND a.sum_actual_quantity <  a.sum_plan_quantity AND a.sum_actual_quantity > 0) " +
                                                 "OR (:deliveryStatus = '4' AND a.sum_actual_quantity >= a.sum_plan_quantity) OR :deliveryStatus = 1) "+
-            "AND ((a.is_closed = '') OR (a.is_closed = :is_closed)) " +
+            "AND (:is_closed = '' OR a.is_closed = :is_closed) " +
             "ORDER BY a.slip_no ASC"
     )
     Page<InventoryOutputListDTO> findInventoryOutputInfoByCondition(

@@ -29,19 +29,19 @@ public class InventoryOutputController {
         this.inventoryOutputService = inventoryOutputService;
     }
 
+//    @GetMapping(value = "", produces = { MediaType.APPLICATION_JSON_VALUE })
+//    public ResponseEntity<Paging<InventoryOutputListDTO>> getAllInventoryOutputInformation(
+//                                                                                    @PageableDefault(size = PageableConstrants.DEFAULT_SIZE,
+//                                                                                            page = PageableConstrants.DEFAULT_PAGE)
+//                                                                                           Pageable pageable, Integer page, Integer size) throws Exception {
+//
+//        Page<InventoryOutputListDTO> inventoryOutputListPage = inventoryOutputService.getAllInventoryInfor(pageable);
+//        HttpHeaders headers = PaginationUtils
+//                .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), inventoryOutputListPage);
+//        return new ResponseEntity<>(PaginationUtils.generatePage(inventoryOutputListPage), headers, HttpStatus.OK);
+//    }
+
     @GetMapping(value = "", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Paging<InventoryOutputListDTO>> getAllInventoryOutputInformation(
-                                                                                    @PageableDefault(size = PageableConstrants.DEFAULT_SIZE,
-                                                                                            page = PageableConstrants.DEFAULT_PAGE)
-                                                                                           Pageable pageable, Integer page, Integer size) throws Exception {
-
-        Page<InventoryOutputListDTO> inventoryOutputListPage = inventoryOutputService.getAllInventoryInfor(pageable);
-        HttpHeaders headers = PaginationUtils
-                .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), inventoryOutputListPage);
-        return new ResponseEntity<>(PaginationUtils.generatePage(inventoryOutputListPage), headers, HttpStatus.OK);
-    }
-
-    @GetMapping(value = "search", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Paging<InventoryOutputListDTO>> searchInformationInventoryOutput(
             @RequestParam(name = "f_orderDate", required = false) String f_orderDate,
             @RequestParam(name = "t_orderDate", required = false) String t_orderDate,
@@ -70,7 +70,7 @@ public class InventoryOutputController {
             @RequestParam(name = "batchNo", required = false) String batchNo,
             @RequestParam(name = "deliveryType", required = false, defaultValue = "1") Integer deliveryType,
             @RequestParam(name = "deliveryStatus", required = false, defaultValue = "1") String deliveryStatus,
-            @RequestParam(name = "is_closed", required = false, defaultValue = "1") String is_closed,
+            @RequestParam(name = "is_closed", required = false, defaultValue = "") String is_closed,
             @PageableDefault(size = PageableConstrants.DEFAULT_SIZE,
                     page = PageableConstrants.DEFAULT_PAGE)
             Pageable pageable, Integer page, Integer size){
