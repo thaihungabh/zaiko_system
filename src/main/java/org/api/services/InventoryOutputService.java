@@ -15,7 +15,7 @@ public interface InventoryOutputService {
                                                             String deliveryDestName, Integer f_supplierId,
                                                             Integer t_supplierId, String supplierName,
                                                             Integer f_productId, Integer t_productId, String productName,
-                                                            String f_repositoryId, String t_repositoryId,
+                                                            Integer f_repositoryId, Integer t_repositoryId,
                                                             String batchNo, Integer deliveryType, String deliveryStatus,
                                                             String is_closed, Pageable pageable);
 }

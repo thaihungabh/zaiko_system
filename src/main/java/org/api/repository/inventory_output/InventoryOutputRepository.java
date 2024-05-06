@@ -19,7 +19,7 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
             "e.customerCode, e.customerName, f.repository_code, f.repository_name, g.repository_code, g.repository_name, " +
             "a.plan_supplier_slip_no, a.actual_supplier_slip_no, a.sum_plan_quantity, a.sum_actual_quantity) " +
             "FROM InventoryOutputEntity a " +
-            "INNER JOIN CustomerDeliveryDestEntity b ON a.plan_customer_delivery_destination_id = b.deliveryDestination_id " +
+            "INNER JOIN CustomerDeliveryDestEntity b ON a.plan_customer_delivery_destination_id = b.deliveryDestinationId " +
             "INNER JOIN  SupplierDeliveryDestEntity c ON a.actual_customer_delivery_destination_id = c.deliveryDestination_id " +
             "INNER JOIN CustomerEntity d ON a.plan_customer_id = d.customerId " +
             "INNER JOIN CustomerEntity e ON a.actual_customer_id = e.customerId " +
@@ -34,63 +34,63 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
             "e.customerCode, e.customerName, f.repository_code, f.repository_name, g.repository_code, g.repository_name, " +
             "a.plan_supplier_slip_no, a.actual_supplier_slip_no, a.sum_plan_quantity, a.sum_actual_quantity) " +
             "FROM InventoryOutputEntity a " +
-            "LEFT JOIN CustomerDeliveryDestEntity b ON a.plan_customer_delivery_destination_id = b.deliveryDestination_id " +
+            "LEFT JOIN CustomerDeliveryDestEntity b ON a.plan_customer_delivery_destination_id = b.deliveryDestinationId " +
             "LEFT JOIN  SupplierDeliveryDestEntity c ON a.actual_customer_delivery_destination_id = c.deliveryDestination_id " +
             "LEFT JOIN CustomerEntity d ON a.plan_customer_id = d.customerId " +
             "LEFT JOIN CustomerEntity e ON a.actual_customer_id = e.customerId " +
             "LEFT JOIN RepositoryEntity f ON a.plan_repository_id = f.repository_id " +
             "LEFT JOIN RepositoryEntity g ON a.actual_repository_id = g.repository_id"
             + " Where a.delFlg = '0' "+
-            "AND (:f_orderDate IS NULL OR a.order_date >= :f_orderDate) " +
-                                            "AND (:t_orderDate IS NULL OR a.order_date <= :t_orderDate) "+
-            "AND (:f_planOutputDate IS NULL OR a.plan_output_date >= :f_planOutputDate) " +
-                                            "AND (:t_planOutputDate IS NULL OR a.plan_output_date <= :t_planOutputDate ) "+
-            "AND (:f_planWorkingDate IS NULL OR a.plan_working_date >= :f_planWorkingDate) " +
-                                            "AND (:t_planWorkingDate IS NULL OR a.plan_working_date <= :t_planWorkingDate)"+
-            "AND (:f_planDeliverDate IS NULL OR a.plan_deliver_date >= :f_planDeliverDate) " +
-                                            "AND (:t_planDeliverDate IS NULL OR a.plan_deliver_date <= :t_planDeliverDate)"+
-            "AND (:f_slipNo IS NULL OR a.slip_no >= :f_slipNo) AND (:t_slipNo IS NULL OR a.slip_no <= :t_slipNo) "+
-            "AND (:f_customerId IS NULL OR (a.plan_customer_id >= :f_customerId OR a.actual_customer_id >= :f_customerId)) " +
-                                            "AND (:t_customerId IS NULL OR (a.plan_customer_id <= :t_customerId OR a.actual_customer_id <= :t_customerId))"+
+            "AND (:fromOrderDate IS NULL OR a.order_date >= :fromOrderDate) " +
+                                            "AND (:toOrderDate IS NULL OR a.order_date <= :toOrderDate) "+
+            "AND (:fromPlanOutputDate IS NULL OR a.plan_output_date >= :fromPlanOutputDate) " +
+                                            "AND (:toPlanOutputDate IS NULL OR a.plan_output_date <= :toPlanOutputDate ) "+
+            "AND (:fromPlanWorkingDate IS NULL OR a.plan_working_date >= :fromPlanWorkingDate) " +
+                                            "AND (:toPlanWorkingDate IS NULL OR a.plan_working_date <= :toPlanWorkingDate)"+
+            "AND (:fromPlanDeliverDate IS NULL OR a.plan_deliver_date >= :fromPlanDeliverDate) " +
+                                            "AND (:toPlanDeliverDate IS NULL OR a.plan_deliver_date <= :toPlanDeliverDate)"+
+            "AND (:fromSlipNo IS NULL OR a.slip_no >= :fromSlipNo) AND (:toSlipNo IS NULL OR a.slip_no <= :toSlipNo) "+
+            "AND (:fromCustomerId IS NULL OR (a.plan_customer_id >= :fromCustomerId OR a.actual_customer_id >= :fromCustomerId)) " +
+                                            "AND (:toCustomerId IS NULL OR (a.plan_customer_id <= :toCustomerId OR a.actual_customer_id <= :toCustomerId))"+
             "AND (:customerName IS NULL OR (a.plan_customer_id IN " +
                                                                 "(SELECT sd1.customerId FROM CustomerEntity sd1 " +
                                                                 "WHERE sd1.customerName LIKE CONCAT('%', :customerName, '%')) "+
                                             "OR a.actual_customer_id IN " +
                                                                 "(SELECT sd3.customerId FROM CustomerEntity sd3 " +
                                                                 "WHERE sd3.customerName LIKE CONCAT('%', :customerName, '%'))))"+
-            "AND (:f_deliverDestId IS NULL OR (a.plan_customer_delivery_destination_id >= :f_deliverDestId " +
-                                                "OR a.actual_customer_delivery_destination_id >= :f_deliverDestId)) " +
-                                            "AND (:t_deliverDestId IS NUll OR (a.plan_customer_delivery_destination_id <= :t_deliverDestId " +
-                                                "OR a.actual_customer_delivery_destination_id <= :t_deliverDestId)) "+
+            "AND (:fromDeliverDestId IS NULL OR (a.plan_customer_delivery_destination_id >= :fromDeliverDestId " +
+                                                "OR a.actual_customer_delivery_destination_id >= :fromDeliverDestId)) " +
+                                            "AND (:toDeliverDestId IS NUll OR (a.plan_customer_delivery_destination_id <= :toDeliverDestId " +
+                                                "OR a.actual_customer_delivery_destination_id <= :toDeliverDestId)) "+
             "AND (:deliveryDestName IS NULL OR (a.plan_customer_delivery_destination_id IN " +
-                                                                    "(SELECT cd1.deliveryDestination_id " +
+                                                                    "(SELECT cd1.deliveryDestinationId " +
                                                                     "FROM CustomerDeliveryDestEntity cd1 " +
                                                                     "WHERE cd1.departmentName " +
                                                                     "LIKE CONCAT('%', :deliveryDestName, '%')) " +
                                             "OR a.actual_customer_delivery_destination_id IN " +
-                                                                    "(SELECT cd3.deliveryDestination_id " +
+                                                                    "(SELECT cd3.deliveryDestinationId " +
                                                                     "FROM CustomerDeliveryDestEntity cd3 " +
                                                                     "WHERE cd3.departmentName " +
                                                                     "LIKE CONCAT('%', :deliveryDestName, '%')))) "+
-            "AND (:f_supplierId IS NULL OR (a.inventory_output_id IN " +
+            "AND (:fromSupplierId IS NULL OR (a.inventory_output_id IN " +
                                                                 "(SELECT actual_output_detail.inventory_output_id " +
                                                                     "FROM InventoryActualOutputDetailEntity actual_output_detail " +
-                                                                    "WHERE actual_output_detail.supplier_id >= :f_supplierId " +
+                                                                    "WHERE actual_output_detail.supplier_id >= :fromSupplierId " +
                                                                     "GROUP BY actual_output_detail.inventory_output_id) " +
                                             "OR a.inventory_output_id IN " +
                                                                     "(SELECT plan_output_detail.inventory_output_id " +
                                                                         "FROM InventoryPlanOutputDetailEntity plan_output_detail " +
-                                                                        "WHERE plan_output_detail.supplier_id >= :f_supplierId " +
+                                                                        "WHERE plan_output_detail.supplier_id >= :fromSupplierId " +
                                                                         "GROUP BY plan_output_detail.inventory_output_id))) "+
-            "AND (:t_supplierId IS NULL OR (a.inventory_output_id IN " +
+            "AND (:toSupplierId IS NULL OR (a.inventory_output_id IN " +
                                                                 "(SELECT actual_output_detail1.inventory_output_id " +
                                                                     "FROM InventoryActualOutputDetailEntity actual_output_detail1 " +
-                                                                    "WHERE actual_output_detail1.supplier_id <= :t_supplierId " +
+                                                                    "WHERE actual_output_detail1.supplier_id <= :toSupplierId " +
                                                                     "GROUP BY actual_output_detail1.inventory_output_id) " +
                                             "OR a.inventory_output_id IN " +
                                                                     "(SELECT plan_output_detail1.inventory_output_id " +
                                                                         "FROM InventoryPlanOutputDetailEntity plan_output_detail1 " +
-                                                                        "WHERE plan_output_detail1.supplier_id <= :t_supplierId " +
+                                                                        "WHERE plan_output_detail1.supplier_id <= :toSupplierId " +
                                                                         "GROUP BY plan_output_detail1.inventory_output_id))) "+
             "AND (:supplierName IS NULL OR (a.inventory_output_id IN " +
                                                                 "(SELECT actual_output_detail2.inventory_output_id " +
@@ -112,25 +112,25 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
                                                                                     "WHERE sb3.supplierName " +
                                                                                     "LIKE CONCAT('%', :supplierName, '%')) " +
                                                                 "GROUP BY plan_output_detail2.inventory_output_id))) "+
-            "AND ((:f_productId IS NULL OR (a.inventory_output_id IN " +
+            "AND ((:fromProductId IS NULL OR (a.inventory_output_id IN " +
                                                                 "(SELECT actual_output_detail.inventory_output_id " +
                                                                     "FROM InventoryActualOutputDetailEntity actual_output_detail " +
-                                                                    "WHERE actual_output_detail.product_id >= :f_productId " +
+                                                                    "WHERE actual_output_detail.product_id >= :fromProductId " +
                                                                     "GROUP BY actual_output_detail.inventory_output_id) " +
                                                             "OR a.inventory_output_id IN " +
                                                                                 "(SELECT plan_output_detail.inventory_output_id " +
                                                                                     "FROM InventoryPlanOutputDetailEntity plan_output_detail " +
-                                                                                    "WHERE plan_output_detail.product_id >= :f_productId " +
+                                                                                    "WHERE plan_output_detail.product_id >= :fromProductId " +
                                                                                     "GROUP BY plan_output_detail.inventory_output_id))) " +
-                                            "AND :t_productId IS NULL OR (a.inventory_output_id IN "+
+                                            "AND :toProductId IS NULL OR (a.inventory_output_id IN "+
                                                                         "(SELECT actual_output_detail.inventory_output_id " +
                                                                             "FROM InventoryActualOutputDetailEntity actual_output_detail " +
-                                                                            "WHERE actual_output_detail.product_id <= :t_productId " +
+                                                                            "WHERE actual_output_detail.product_id <= :toProductId " +
                                                                             "GROUP BY actual_output_detail.inventory_output_id) " +
                                                                         "OR a.inventory_output_id IN " +
                                                                                 "(SELECT plan_output_detail.inventory_output_id " +
                                                                                 "FROM InventoryPlanOutputDetailEntity plan_output_detail " +
-                                                                                "WHERE plan_output_detail.product_id <= :t_productId " +
+                                                                                "WHERE plan_output_detail.product_id <= :toProductId " +
                                                                                 "GROUP BY plan_output_detail.inventory_output_id))) "+
             "AND ((:productName IS NULL OR (a.inventory_output_id IN " +
                                                             "(SELECT actual_output_detail.inventory_output_id " +
@@ -158,8 +158,8 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
                                                                     "OR p.name4 LIKE CONCAT('%', :productName, '%') " +
                                                                     "OR p.name5 LIKE CONCAT('%', :productName, '%')) " +
                                                             "GROUP BY plan_output_detail.inventory_output_id))) "+
-            "AND ((:f_repositoryId IS NULL OR (a.plan_repository_id >= :f_repositoryId OR a.actual_repository_id >= :f_repositoryId)) " +
-                                             "AND (:t_repositoryId IS NULL OR (a.plan_repository_id <= :t_repositoryId OR a.actual_repository_id <= :t_repositoryId))) "+
+            "AND ((:fromRepositoryId IS NULL OR (a.plan_repository_id >= :fromRepositoryId OR a.actual_repository_id >= :fromRepositoryId)) " +
+                                             "AND (:toRepositoryId IS NULL OR (a.plan_repository_id <= :toRepositoryId OR a.actual_repository_id <= :toRepositoryId))) "+
             "AND ((:batchNo IS NULL OR (a.inventory_output_id IN " +
                                                             "(SELECT actual_output_detail.inventory_output_id " +
                                                                 "FROM InventoryActualOutputDetailEntity actual_output_detail " +
@@ -176,37 +176,37 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
             "AND ((:deliveryStatus = '2' AND a.sum_actual_quantity = 0) " +
                                                 "OR (:deliveryStatus = '3' AND a.sum_actual_quantity <  a.sum_plan_quantity AND a.sum_actual_quantity > 0) " +
                                                 "OR (:deliveryStatus = '4' AND a.sum_actual_quantity >= a.sum_plan_quantity) OR :deliveryStatus = 1) "+
-            "AND (:is_closed = '' OR a.is_closed = :is_closed) " +
+            "AND (:isClosed = '' OR a.is_closed = :isClosed) " +
             "ORDER BY a.slip_no ASC"
     )
     Page<InventoryOutputListDTO> findInventoryOutputInfoByCondition(
-                                                                    @Param("f_orderDate") String f_orderDate,
-                                                                    @Param("t_orderDate") String t_orderDate,
-                                                                    @Param("f_planOutputDate") String f_planOutputDate,
-                                                                    @Param("t_planOutputDate") String t_planOutputDate,
-                                                                    @Param("f_planWorkingDate") String f_planWorkingDate,
-                                                                    @Param("t_planWorkingDate") String t_planWorkingDate,
-                                                                    @Param("f_planDeliverDate") String f_planDeliverDate,
-                                                                    @Param("t_planDeliverDate") String t_planDeliverDate,
-                                                                    @Param("f_slipNo") String f_slipNo,
-                                                                    @Param("t_slipNo") String t_slipNo,
-                                                                    @Param("f_customerId") Integer f_customerId,
-                                                                    @Param("t_customerId") Integer t_customerId,
+                                                                    @Param("fromOrderDate") String fromOrderDate,
+                                                                    @Param("toOrderDate") String toOrderDate,
+                                                                    @Param("fromPlanOutputDate") String fromPlanOutputDate,
+                                                                    @Param("toPlanOutputDate") String toPlanOutputDate,
+                                                                    @Param("fromPlanWorkingDate") String fromPlanWorkingDate,
+                                                                    @Param("toPlanWorkingDate") String toPlanWorkingDate,
+                                                                    @Param("fromPlanDeliverDate") String fromPlanDeliverDate,
+                                                                    @Param("toPlanDeliverDate") String toPlanDeliverDate,
+                                                                    @Param("fromSlipNo") String fromSlipNo,
+                                                                    @Param("toSlipNo") String toSlipNo,
+                                                                    @Param("fromCustomerId") Integer fromCustomerId,
+                                                                    @Param("toCustomerId") Integer toCustomerId,
                                                                     @Param("customerName") String customerName,
-                                                                    @Param("f_deliverDestId") Integer f_deliverDestId,
-                                                                    @Param("t_deliverDestId") Integer t_deliverDestId,
+                                                                    @Param("fromDeliverDestId") Integer fromDeliverDestId,
+                                                                    @Param("toDeliverDestId") Integer toDeliverDestId,
                                                                     @Param("deliveryDestName") String deliveryDestName,
-                                                                    @Param("f_supplierId") Integer f_supplierId,
-                                                                    @Param("t_supplierId") Integer t_supplierId,
+                                                                    @Param("fromSupplierId") Integer fromSupplierId,
+                                                                    @Param("toSupplierId") Integer toSupplierId,
                                                                     @Param("supplierName") String supplierName,
-                                                                    @Param("f_productId") Integer f_productId,
-                                                                    @Param("t_productId") Integer t_productId,
+                                                                    @Param("fromProductId") Integer fromProductId,
+                                                                    @Param("toProductId") Integer toProductId,
                                                                     @Param("productName") String productName,
-                                                                    @Param("f_repositoryId") String f_repositoryId,
-                                                                    @Param("t_repositoryId") String t_repositoryId,
+                                                                    @Param("fromRepositoryId") Integer fromRepositoryId,
+                                                                    @Param("toRepositoryId") Integer toRepositoryId,
                                                                     @Param("batchNo") String batchNo,
                                                                     @Param("deliveryType") Integer deliveryType,
                                                                     @Param("deliveryStatus") String deliveryStatus,
-                                                                    @Param("is_closed") String is_closed,
+                                                                    @Param("isClosed") String isClosed,
                                                                     Pageable pageable);
 }
