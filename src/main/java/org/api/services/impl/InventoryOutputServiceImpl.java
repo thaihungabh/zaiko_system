@@ -25,26 +25,26 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
     }
 
     @Override
-    public Page<InventoryOutputListDTO> searchInventoryInformation(String f_orderDate, String t_orderDate, String f_planOutputDate,
-                                                                   String t_planOutputDate, String f_planWorkingDate,
-                                                                   String t_planWorkingDate, String f_planDeliverDate,
-                                                                   String t_planDeliverDate, String f_slipNo, String t_slipNo,
-                                                                   Integer f_customerId, Integer t_customerId, String customerName,
-                                                                   Integer f_deliverDestId, Integer t_deliverDestId,
-                                                                   String deliveryDestName, Integer f_supplierId,
-                                                                   Integer t_supplierId, String supplierName,
-                                                                   Integer f_productId, Integer t_productId, String productName,
-                                                                   Integer f_repositoryId, Integer t_repositoryId,
+    public Page<InventoryOutputListDTO> searchInventoryInformation(String fromOrderDate, String toOrderDate, String fromPlanOutputDate,
+                                                                   String toPlanOutputDate, String fromPlanWorkingDate,
+                                                                   String toPlanWorkingDate, String fromPlanDeliverDate,
+                                                                   String toPlanDeliverDate, String fromSlipNo, String toSlipNo,
+                                                                   String fromCustomerCode, String toCustomerCode, String customerName,
+                                                                   String fromDeliverDestCode, String toDeliverDestCode,
+                                                                   String deliveryDestName, String fromSupplierCode,
+                                                                   String toSupplierCode, String supplierName,
+                                                                   String fromProductCode, String toProductCode, String productName,
+                                                                   Integer fromRepositoryId, Integer toRepositoryId,
                                                                    String batchNo, Integer deliveryType, String deliveryStatus,
-                                                                   String is_closed, Pageable pageable) {
+                                                                   String isClosed, Pageable pageable) {
 
         Page<InventoryOutputListDTO> searchResult = inventoryOutputRepository
-                .findInventoryOutputInfoByCondition(f_orderDate,t_orderDate, f_planOutputDate, t_planOutputDate, f_planWorkingDate,
-                                                    t_planWorkingDate, f_planDeliverDate, t_planDeliverDate, f_slipNo, t_slipNo,
-                                                    f_customerId, t_customerId, customerName, f_deliverDestId,
-                                                    t_deliverDestId, deliveryDestName,f_supplierId, t_supplierId,
-                                                    supplierName, f_productId, t_productId, productName, f_repositoryId,
-                                                    t_repositoryId, batchNo, deliveryType, deliveryStatus, is_closed, pageable);
+                .findInventoryOutputInfoByCondition(fromOrderDate,toOrderDate, fromPlanOutputDate, toPlanOutputDate, fromPlanWorkingDate,
+                                                    toPlanWorkingDate, fromPlanDeliverDate, toPlanDeliverDate, fromSlipNo, toSlipNo,
+                                                    fromCustomerCode, toCustomerCode, customerName, fromDeliverDestCode,
+                                                    toDeliverDestCode, deliveryDestName,fromSupplierCode, toSupplierCode,
+                                                    supplierName, fromProductCode, toProductCode, productName, fromRepositoryId,
+                                                    toRepositoryId, batchNo, deliveryType, deliveryStatus, isClosed, pageable);
 
         return new PageImpl<>(searchResult.getContent(), searchResult.getPageable(), searchResult.getTotalElements());
     }

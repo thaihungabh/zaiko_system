@@ -6,16 +6,16 @@ import org.springframework.data.domain.Pageable;
 
 public interface InventoryOutputService {
     Page<InventoryOutputListDTO> getAllInventoryInfor(Pageable pageable);
-    Page<InventoryOutputListDTO> searchInventoryInformation(String f_orderDate, String t_orderDate, String f_planOutputDate,
-                                                            String t_planOutputDate, String f_planWorkingDate,
-                                                            String t_planWorkingDate, String f_planDeliverDate,
-                                                            String t_planDeliverDate, String f_slipNo, String t_slipNo,
-                                                            Integer f_customerId, Integer t_customerId, String customerName,
-                                                            Integer f_deliverDestId, Integer t_deliverDestId,
-                                                            String deliveryDestName, Integer f_supplierId,
-                                                            Integer t_supplierId, String supplierName,
-                                                            Integer f_productId, Integer t_productId, String productName,
-                                                            Integer f_repositoryId, Integer t_repositoryId,
+    Page<InventoryOutputListDTO> searchInventoryInformation(String fromOrderDate, String toOrderDate, String fromPlanOutputDate,
+                                                            String toPlanOutputDate, String fromPlanWorkingDate,
+                                                            String toPlanWorkingDate, String fromPlanDeliverDate,
+                                                            String toPlanDeliverDate, String fromSlipNo, String toSlipNo,
+                                                            String fromCustomerCode, String toCustomerCode, String customerName,
+                                                            String fromDeliverDestCode, String toDeliverDestCode,
+                                                            String deliveryDestName, String fromSupplierCode,
+                                                            String toSupplierCode, String supplierName,
+                                                            String fromProductCode, String toProductCode, String productName,
+                                                            Integer fromRepositoryId, Integer toRepositoryId,
                                                             String batchNo, Integer deliveryType, String deliveryStatus,
-                                                            String is_closed, Pageable pageable);
+                                                            String isClosed, Pageable pageable);
 }

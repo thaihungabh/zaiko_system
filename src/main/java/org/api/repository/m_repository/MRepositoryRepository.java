@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface MRepositoryRepository extends BaseRepository<RepositoryEntity, Integer> {
 
-    @Query("SELECT r FROM RepositoryEntity r")
+    @Query("SELECT r FROM RepositoryEntity r WHERE r.delFlg = '0'")
     List<RepositoryEntity> findAllRepository();
 }

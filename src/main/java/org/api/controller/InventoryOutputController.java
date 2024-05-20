@@ -21,26 +21,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 @RequestMapping("/api/inventory-output")
 public class InventoryOutputController {
-
     private final InventoryOutputService inventoryOutputService;
-
 
     public InventoryOutputController(InventoryOutputService inventoryOutputService) {
         this.inventoryOutputService = inventoryOutputService;
     }
-
-//    @GetMapping(value = "", produces = { MediaType.APPLICATION_JSON_VALUE })
-//    public ResponseEntity<Paging<InventoryOutputListDTO>> getAllInventoryOutputInformation(
-//                                                                                    @PageableDefault(size = PageableConstrants.DEFAULT_SIZE,
-//                                                                                            page = PageableConstrants.DEFAULT_PAGE)
-//                                                                                           Pageable pageable, Integer page, Integer size) throws Exception {
-//
-//        Page<InventoryOutputListDTO> inventoryOutputListPage = inventoryOutputService.getAllInventoryInfor(pageable);
-//        HttpHeaders headers = PaginationUtils
-//                .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), inventoryOutputListPage);
-//        return new ResponseEntity<>(PaginationUtils.generatePage(inventoryOutputListPage), headers, HttpStatus.OK);
-//    }
-
     @GetMapping(value = "", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Paging<InventoryOutputListDTO>> searchInformationInventoryOutput(
             @RequestParam(name = "fromOrderDate", required = false) String fromOrderDate,
@@ -53,17 +38,17 @@ public class InventoryOutputController {
             @RequestParam(name = "toPlanDeliverDate", required = false) String toPlanDeliverDate,
             @RequestParam(name = "fromSlipNo", required = false) String fromSlipNo,
             @RequestParam(name = "toSlipNo", required = false) String toSlipNo,
-            @RequestParam(name = "fromCustomerId", required = false) Integer fromCustomerId,
-            @RequestParam(name = "toCustomerId", required = false) Integer toCustomerId,
+            @RequestParam(name = "fromCustomerCode", required = false) String fromCustomerCode,
+            @RequestParam(name = "toCustomerCode", required = false) String toCustomerCode,
             @RequestParam(name = "customerName", required = false) String customerName,
-            @RequestParam(name = "fromDeliverDestId", required = false) Integer fromDeliverDestId,
-            @RequestParam(name = "toDeliverDestId", required = false) Integer toDeliverDestId,
+            @RequestParam(name = "fromDeliverDestCode", required = false) String fromDeliverDestCode,
+            @RequestParam(name = "toDeliverDestCode", required = false) String toDeliverDestCode,
             @RequestParam(name = "deliveryDestName", required = false) String deliveryDestName,
-            @RequestParam(name = "fromSupplierId", required = false) Integer fromSupplierId,
-            @RequestParam(name = "toSupplierId", required = false) Integer toSupplierId,
+            @RequestParam(name = "fromSupplierCode", required = false) String fromSupplierCode,
+            @RequestParam(name = "toSupplierCode", required = false) String toSupplierCode,
             @RequestParam(name = "supplierName", required = false) String supplierName,
-            @RequestParam(name = "fromProductId", required = false) Integer fromProductId,
-            @RequestParam(name = "toProductId", required = false) Integer toProductId,
+            @RequestParam(name = "fromProductCode", required = false) String fromProductCode,
+            @RequestParam(name = "toProductCode", required = false) String toProductCode,
             @RequestParam(name = "productName", required = false) String productName,
             @RequestParam(name = "fromRepositoryId", required = false) Integer fromRepositoryId,
             @RequestParam(name = "toRepositoryId", required = false) Integer toRepositoryId,
@@ -78,9 +63,9 @@ public class InventoryOutputController {
         Page<InventoryOutputListDTO> inventoryOutputListPage =
                 inventoryOutputService.searchInventoryInformation(fromOrderDate,toOrderDate, fromPlanOutputDate,
                         toPlanOutputDate, fromPlanWorkingDate, toPlanWorkingDate, fromPlanDeliverDate,
-                        toPlanDeliverDate, fromSlipNo, toSlipNo, fromCustomerId, toCustomerId, customerName,
-                        fromDeliverDestId, toDeliverDestId, deliveryDestName, fromSupplierId, toSupplierId,
-                        supplierName,fromProductId, toProductId, productName, fromRepositoryId, toRepositoryId,
+                        toPlanDeliverDate, fromSlipNo, toSlipNo, fromCustomerCode, toCustomerCode, customerName,
+                        fromDeliverDestCode, toDeliverDestCode, deliveryDestName, fromSupplierCode, toSupplierCode,
+                        supplierName,fromProductCode, toProductCode, productName, fromRepositoryId, toRepositoryId,
                         batchNo, deliveryType, deliveryStatus, isClosed, pageable);
 
         HttpHeaders headers = PaginationUtils
